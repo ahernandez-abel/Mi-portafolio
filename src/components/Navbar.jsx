@@ -17,20 +17,29 @@ export default function Navbar() {
 
       for (let sec of sections) {
         const el = document.getElementById(sec);
-        if (el && scrollPos >= el.offsetTop && scrollPos < el.offsetTop + el.offsetHeight) {
+
+        if (
+          el &&
+          scrollPos >= el.offsetTop &&
+          scrollPos < el.offsetTop + el.offsetHeight
+        ) {
           setActiveSection(sec);
         }
       }
     };
 
     window.addEventListener("scroll", handleScroll);
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Dark mode
   useEffect(() => {
-    if (dark) document.documentElement.classList.add("dark");
-    else document.documentElement.classList.remove("dark");
+    if (dark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
   }, [dark]);
 
   const navLinks = [
@@ -55,12 +64,21 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
         {/* Logo */}
-        <motion.h2
-          whileHover={{ scale: 1.05 }}
-          className="text-xl font-extrabold tracking-wide cursor-pointer"
+        <motion.a
+          href="#about"
+          whileHover={{ scale: 1.04 }}
+          className="flex items-center gap-3 cursor-pointer"
         >
-          Abel<span className="text-blue-500">Dev</span>
-        </motion.h2>
+          <img
+            src="/logo.png"
+            alt="AbelDev Logo"
+            className="w-11 h-11 rounded-full object-cover shadow-lg shadow-blue-500/20"
+          />
+
+          <h2 className="text-xl font-extrabold tracking-wide">
+            Abel<span className="text-blue-500">Dev</span>
+          </h2>
+        </motion.a>
 
         {/* Links */}
         <div className="hidden md:flex gap-8 text-sm items-center relative">
@@ -80,9 +98,14 @@ export default function Navbar() {
                 <motion.span
                   layoutId="nav-pill"
                   className="absolute inset-0 bg-blue-500/20 rounded-full -z-10"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 380,
+                    damping: 30,
+                  }}
                 />
               )}
+
               {link.label}
             </a>
           ))}
