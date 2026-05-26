@@ -1,118 +1,50 @@
 @import "tailwindcss";
 
-/* ✅ Habilitar dark mode por clase en Tailwind v4 */
-@custom-variant dark (&:where(.dark, .dark *));
-
-/* ============================= */
-/* Animaciones personalizadas   */
-/* ============================= */
-
-@layer utilities {
-
-  .fade-in-up {
-    opacity: 0;
-    animation: fadeInUp 0.8s ease-out forwards;
-  }
-
-  .delay-1 { animation-delay: 0.2s; }
-  .delay-2 { animation-delay: 0.4s; }
-  .delay-3 { animation-delay: 0.6s; }
-  .delay-4 { animation-delay: 0.8s; }
-
-  @keyframes fadeInUp {
-    0% {
-      opacity: 0;
-      transform: translateY(25px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
-
-/* ============================= */
-/* Configuración global          */
-/* ============================= */
-
-* {
-  cursor: none !important;
-}
-
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background: radial-gradient(circle at 20% 30%, #1e293b, transparent 40%),
-              radial-gradient(circle at 80% 70%, #0ea5e9, transparent 40%),
-              #0f172a;
-  background-attachment: fixed;
+  margin: 0;
+  background: #0f172a;
+  font-family: Inter, system-ui, sans-serif;
+  color: #e2e8f0;
 }
 
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+::selection {
+  background: rgba(148, 163, 184, 0.25);
 }
 
-.animate-gradient {
-  animation: gradientMove 6s ease infinite;
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 110px 24px;
 }
 
-.glow-text {
-  text-shadow: 0 0 8px rgba(0, 128, 255, 0.7), 0 0 16px rgba(0, 128, 255, 0.5);
+.section-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: white;
+  margin-bottom: 16px;
 }
 
-.glow-bar {
-  box-shadow: 0 0 12px rgba(0, 128, 255, 0.5);
+.section-subtitle {
+  color: #94a3b8;
+  max-width: 650px;
+  line-height: 1.7;
 }
 
-:root {
-  --blue-500: #3b82f6;
-  --cyan-400: #22d3ee;
-  --purple-500: #a855f7;
-  --purple-400: #c084fc;
-  --cyan-500: #06b6d4;
-  --blue-400: #60a5fa;
+.card {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 24px;
+  backdrop-filter: blur(10px);
 }
 
-@keyframes star-move {
-  0% {
-    transform: translateY(0);
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateY(-120vh);
-    opacity: 0;
-  }
+.soft-border {
+  border: 1px solid rgba(148, 163, 184, 0.12);
 }
 
-.animate-star {
-  animation-name: star-move;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-@layer base {
-  @keyframes floatStar {
-    0% {
-      transform: translateY(0px);
-      opacity: 0.3;
-    }
-    50% {
-      transform: translateY(-8px);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(0px);
-      opacity: 0.3;
-    }
-  }
+.professional-gradient {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
 }
